@@ -15,7 +15,7 @@ use std::sync::Arc;
 /// [The official docs](https://core.telegram.org/bots/api#getchat).
 #[serde_with_macros::skip_serializing_none]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SearchGuildUsers {
+pub struct SearchGuildMemberByUsername {
     #[serde(skip)]
     bot: Arc<Bot>,
     pub guild_id: i64,
@@ -23,7 +23,7 @@ pub struct SearchGuildUsers {
 }
 
 #[async_trait::async_trait]
-impl Request for SearchGuildUsers {
+impl Request for SearchGuildMemberByUsername {
     type Output = Vec<ChatMember>;
 
     async fn send(&self) -> ResponseResult<Vec<ChatMember>> {
@@ -32,7 +32,7 @@ impl Request for SearchGuildUsers {
     }
 }
 
-impl SearchGuildUsers {
+impl SearchGuildMemberByUsername {
     pub(crate) fn new(bot: Arc<Bot>, guild_id: i64, username : Vec<String>) -> Self {
         Self { bot, guild_id, username }
     }
