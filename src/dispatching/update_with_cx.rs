@@ -12,7 +12,7 @@ use crate::{
     Bot,
 };
 use std::sync::Arc;
-use crate::requests::{SearchGuildMember, SearchGuildUsers};
+use crate::requests::{SearchGuildMember, SearchGuildMemberByUsername};
 
 /// A [`Dispatcher`]'s handler's context of a bot and an update.
 ///
