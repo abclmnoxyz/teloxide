@@ -19,7 +19,7 @@ pub struct SearchGuildUsers {
     #[serde(skip)]
     bot: Arc<Bot>,
     pub guild_id: i64,
-    pub usernames: Vec<String>,
+    pub username: Vec<String>,
 }
 
 #[async_trait::async_trait]
@@ -33,7 +33,7 @@ impl Request for SearchGuildUsers {
 }
 
 impl SearchGuildUsers {
-    pub(crate) fn new(bot: Arc<Bot>, guild_id: i64, usernames : Vec<String>) -> Self {
-        Self { bot, guild_id, usernames }
+    pub(crate) fn new(bot: Arc<Bot>, guild_id: i64, username : Vec<String>) -> Self {
+        Self { bot, guild_id, username }
     }
 }
