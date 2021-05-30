@@ -491,8 +491,8 @@ impl UpdateKind {
             }),
         })
     }
-    pub fn new_video_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, date: i64, is_bot: bool,
-                                  url: &str, width: i32, height: i32, duration: u32,
+    pub fn new_video_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool,  
+                                  date: i64, url: &str, width: i32, height: i32, duration: u32,
                                   thumb_url: &str, thumb_width: i32, thumb_height: i32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
         let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
         let photo = PhotoSize {
@@ -546,7 +546,7 @@ impl UpdateKind {
             }),
         })
     }
-    pub fn new_voice_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, date: i64, is_bot: bool,
+    pub fn new_voice_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64, 
                                   url: &str, duration: u32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
         let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
         let voice = Voice {
