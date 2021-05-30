@@ -377,7 +377,7 @@ impl UpdateKind {
             }),
         })
     }
-    pub fn new_circle_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, date: i64, is_bot: bool,
+    pub fn new_circle_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64, 
                            gender: Option<u8>, nickname: Option<String>, post_id: i64, topic_id: Option<i64>, topic_name: Option<String>) -> Self {
         UpdateKind::ChannelPost(Message {
             id: message_id,
