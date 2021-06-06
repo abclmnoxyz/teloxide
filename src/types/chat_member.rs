@@ -92,12 +92,13 @@ pub struct ChatMember {
 }
 
 impl ChatMember {
-    pub fn new(user_id: i64, nickname: Option<String>, username: Option<String>, avatar: Option<String>) -> Self {
+    pub fn new(user_id: i64, nickname: Option<String>, username: Option<String>, avatar: Option<String>, role_ids: Option<Vec<String>>) -> Self {
         let mut user = User::default();
         user.id = user_id;
         user.first_name = nickname.unwrap_or_default();
         user.avatar = avatar;
         user.username = username;
+        user.role_ids = role_ids;
         ChatMember {
             user,
             status: ChatMemberStatus::Member,

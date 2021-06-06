@@ -155,7 +155,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -200,7 +201,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -244,7 +246,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -284,7 +287,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -325,7 +329,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -366,7 +371,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -404,7 +410,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: None }),
                 edit_date: None,
@@ -442,7 +449,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: None }),
                 edit_date: None,
@@ -480,7 +488,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: None }),
                 edit_date: None,
@@ -535,7 +544,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -581,7 +591,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -642,7 +653,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 reaction: MessageReaction {
                     reaction_to_message: Box::new(Message::new_public_without_kind(reaction_message, channel_id, guild_id, date)),
@@ -679,7 +691,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }],
             }),
         })
@@ -711,7 +724,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 },
             }),
         })
@@ -743,7 +757,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }],
             }),
         })
@@ -775,7 +790,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }],
             }),
         })
@@ -808,7 +824,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -852,7 +869,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -909,7 +927,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -954,7 +973,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -997,7 +1017,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -1037,7 +1058,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
                 edit_date: None,
@@ -1095,7 +1117,8 @@ impl UpdateKind {
                     language_code: None,
                     user_token: None,
                     gender,
-                    avatar: None
+                    avatar: None,
+                    role_ids: None,
                 }),
                 reaction: MessageReaction {
                     reaction_to_message: Box::new(Message::new_public_without_kind(reaction_message, channel_id, guild_id, date)),
@@ -1166,7 +1189,8 @@ mod test {
                         language_code: Some(String::from("en")),
                         user_token: None,
                         gender: None,
-                        avatar: None
+                        avatar: None,
+                        role_ids: None,
                     }),
                     forward_kind: ForwardKind::Origin(ForwardOrigin {
                         reply_to_message: None,

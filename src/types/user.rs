@@ -38,6 +38,9 @@ pub struct User {
 
     #[serde(default)]
     pub user_token: Option<String>,
+
+    #[serde(default)]
+    pub role_ids: Option<Vec<String>>,
 }
 
 impl User {
