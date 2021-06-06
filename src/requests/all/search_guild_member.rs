@@ -20,7 +20,9 @@ pub struct SearchGuildMember {
     bot: Arc<Bot>,
     pub guild_id: i64,
     pub query: String,
+    pub r: Option<i32>,
 }
+
 
 #[async_trait::async_trait]
 impl Request for SearchGuildMember {
@@ -33,7 +35,7 @@ impl Request for SearchGuildMember {
 }
 
 impl SearchGuildMember {
-    pub(crate) fn new(bot: Arc<Bot>, guild_id: i64, query: String) -> Self {
-        Self { bot, guild_id, query }
+    pub(crate) fn new(bot: Arc<Bot>, guild_id: i64, query: String, r: Option<i32>) -> Self {
+        Self { bot, guild_id, query , r}
     }
 }

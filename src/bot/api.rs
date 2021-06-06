@@ -1657,8 +1657,9 @@ impl Bot {
         self: &Arc<Bot>,
         guild_id: i64,
         query: String,
+        r: Option<i32>
     ) -> SearchGuildMember{
-        SearchGuildMember::new(Arc::clone(self), guild_id, query)
+        SearchGuildMember::new(Arc::clone(self), guild_id, query, r)
     }
 
     pub fn get_role_members(

@@ -197,8 +197,8 @@ impl UpdateWithCx<Message> {
         self.bot.set_member_roles(guild_id, user_id, roles)
     }
 
-    pub fn search_guild_member(&self, guild_id: i64, query: String) -> SearchGuildMember {
-        self.bot.search_guild_member(guild_id, query)
+    pub fn search_guild_member(&self, guild_id: i64, query: String, r: Option<i32>) -> SearchGuildMember {
+        self.bot.search_guild_member(guild_id, query, r)
     }
 
     pub fn get_chat_member(&self, guild_id: Option<i64>, user_id: i64) -> GetChatMember {
