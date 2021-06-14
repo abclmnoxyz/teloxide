@@ -129,7 +129,7 @@ impl UpdateKind {
     pub fn new_channel_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str, 
                             is_bot: bool, text: &str, entities: Vec<MessageEntity>, date: i64,
                             quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         UpdateKind::ChannelPost(Message {
             id: message_id,
             date,
@@ -168,7 +168,7 @@ impl UpdateKind {
     pub fn new_image_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                                   is_bot: bool, date: i64, image_url: &str, width: i32, height: i32,
                                   quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let photo = PhotoSize {
             file_id: image_url.to_string(),
             file_unique_id: image_url.to_string(),
@@ -219,7 +219,7 @@ impl UpdateKind {
     pub fn new_sticker_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                                     is_bot: bool, date: i64, image_url: &str, width: i32, height: i32,
                                     quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::ChannelPost(Message {
             id: message_id,
@@ -260,7 +260,7 @@ impl UpdateKind {
     }
     pub fn new_rich_text_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64,
                                       quote: Option<i64>, gender: Option<u8>, nickname: Option<String>, title: &str) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::ChannelPost(Message {
             id: message_id,
@@ -302,7 +302,7 @@ impl UpdateKind {
     pub fn new_topic_share_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                                         is_bot: bool, date: i64, quote: Option<i64>, gender: Option<u8>, 
                                         nickname: Option<String>, topic_user: i64, topic_channel: i64, topic_message: i64) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::ChannelPost(Message {
             id: message_id,
@@ -344,7 +344,7 @@ impl UpdateKind {
     pub fn new_circle_share_entity_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                                                 is_bot: bool, date: i64, quote: Option<i64>,
                                                 gender: Option<u8>, nickname: Option<String>, circle_user: User, circle_post: CirclePost) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::ChannelPost(Message {
             id: message_id,
@@ -503,7 +503,7 @@ impl UpdateKind {
     pub fn new_video_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool,  
                                   date: i64, url: &str, width: i32, height: i32, duration: u32,
                                   thumb_url: &str, thumb_width: i32, thumb_height: i32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let photo = PhotoSize {
             file_id: thumb_url.to_string(),
             file_unique_id: thumb_url.to_string(),
@@ -558,7 +558,7 @@ impl UpdateKind {
     }
     pub fn new_voice_channel_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64, 
                                   url: &str, duration: u32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_public_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let voice = Voice {
             file_id: url.to_string(),
             file_unique_id: url.to_string(),
@@ -799,7 +799,7 @@ impl UpdateKind {
     pub fn new_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                        is_bot: bool, text: &str, entities: Vec<MessageEntity>, date: i64,
                        quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         UpdateKind::Message(Message {
             id: message_id,
             date,
@@ -837,7 +837,7 @@ impl UpdateKind {
     pub fn new_image_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                              is_bot: bool, date: i64, image_url: &str, width: i32, height: i32,
                              quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let photo = PhotoSize {
             file_id: image_url.to_string(),
             file_unique_id: image_url.to_string(),
@@ -887,7 +887,7 @@ impl UpdateKind {
     pub fn new_video_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool,
                              date: i64, url: &str, width: i32, height: i32, duration: u32,
                              thumb_url: &str, thumb_width: i32, thumb_height: i32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let photo = PhotoSize {
             file_id: thumb_url.to_string(),
             file_unique_id: thumb_url.to_string(),
@@ -941,7 +941,7 @@ impl UpdateKind {
     }
     pub fn new_voice_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, 
                              date: i64, url: &str, duration: u32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
         let voice = Voice {
             file_id: url.to_string(),
             file_unique_id: url.to_string(),
@@ -991,7 +991,7 @@ impl UpdateKind {
     pub fn new_sticker_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, 
                                is_bot: bool, date: i64, image_url: &str, width: i32, height: i32,
                                quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::Message(Message {
             id: message_id,
@@ -1032,7 +1032,7 @@ impl UpdateKind {
 
     pub fn new_rich_text_message(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool,
                                  date: i64, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>, title: &str) -> Self {
-        let reply_to = if quote == None { None } else { Some(Box::new(Message::new_private_without_kind(message_id, channel_id, guild_id, date))) };
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
 
         UpdateKind::Message(Message {
             id: message_id,
