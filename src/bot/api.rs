@@ -19,7 +19,7 @@ use crate::{
         SetWebhook, StopMessageLiveLocation, StopPoll, UnbanChatMember,
         UnpinChatMessage, UploadStickerFile,SetGuildCredit, DeleteGuildCredit,
         GetPrivateChat, GetGuildRoles, GetGuildMembers, SearchGuildMember, SetMemberRoles,
-        GetRoleMembers, GetRoleMembersCount, SearchGuildMemberByUsername,
+        GetRoleMembers, GetRoleMembersCount, SearchGuildMemberByUsername, GetMessage,
     },
     types::{
         ChatId, ChatOrInlineMessage, ChatPermissions, InlineQueryResult,
@@ -1676,6 +1676,14 @@ impl Bot {
         usernames: Vec<String>,
     ) -> SearchGuildMemberByUsername{
         SearchGuildMemberByUsername::new(Arc::clone(self), guild_id, usernames)
+    }
+
+    pub fn get_message(
+        self: &Arc<Bot>,
+        chat_id: i64,
+        message_id: i64,
+    ) -> GetMessage{
+        GetMessage::new(Arc::clone(self), chat_id, message_id)
     }
 
 }
