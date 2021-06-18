@@ -19,7 +19,7 @@ use crate::{
         SetWebhook, StopMessageLiveLocation, StopPoll, UnbanChatMember,
         UnpinChatMessage, UploadStickerFile,SetGuildCredit, DeleteGuildCredit,
         GetPrivateChat, GetGuildRoles, GetGuildMembers, SearchGuildMember, SetMemberRoles,
-        GetRoleMembers, GetRoleMembersCount, SearchGuildMemberByUsername, GetMessage,
+        GetRoleMembers, GetRoleMembersCount, SearchGuildMemberByUsername, GetMessage, SendTaskInduction,
     },
     types::{
         ChatId, ChatOrInlineMessage, ChatPermissions, InlineQueryResult,
