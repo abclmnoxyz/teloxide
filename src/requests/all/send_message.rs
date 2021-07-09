@@ -24,6 +24,7 @@ pub struct SendMessage {
     pub disable_notification: Option<bool>,
     pub reply_to_message_id: Option<i64>,
     pub reply_markup: Option<ReplyMarkup>,
+    pub unreactive: Option<i32>,
 }
 
 #[async_trait::async_trait]
@@ -57,6 +58,7 @@ impl SendMessage {
             disable_notification: None,
             reply_to_message_id: None,
             reply_markup: None,
+            unreactive: None,
         }
     }
 
@@ -132,6 +134,11 @@ impl SendMessage {
             T: Into<Option<bool>>,
     {
         self.selective = val.into();
+        self
+    }
+
+    pub fn unreactive(mut self, val: Option<i32>) -> Self {
+        self.unreactive = val;
         self
     }
 }
