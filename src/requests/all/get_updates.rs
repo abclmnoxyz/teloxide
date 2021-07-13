@@ -48,6 +48,8 @@ impl Request for GetUpdates {
         )
         .await?;
 
+        debug!("response is {}", value.clone());
+
         match value {
             Value::Array(array) => Ok(array
                 .into_iter()
