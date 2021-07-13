@@ -41,6 +41,8 @@ pub async fn request_json<T, P>(
         .await
         .map_err(RequestError::NetworkError)?;
 
+    log::debug!("recved response");
+
     match process_response(response).await {
         Ok(v) => {
             // let req = serde_json::to_string(&params).unwrap();
@@ -50,6 +52,7 @@ pub async fn request_json<T, P>(
             Ok(v)
         }
         Err(err) => {
+            log::error!("url={}, err={}", response.url().to_string(), err.to_string());
             Err(err)
         }
     }
@@ -64,7 +67,7 @@ async fn process_response<T>(response: Response) -> ResponseResult<T>
 
     match serde_json::from_str::<TelegramResponse<T>>(s) {
         Ok(v) => {
-            // log::debug!("url={}, body={}", url, s);
+            log::debug!("url={}, body={}", url, s);
             v.into() }
         Err(err) => {
             log::error!("url={}, body={}, err={}", url, s, err.to_string());
