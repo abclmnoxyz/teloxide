@@ -52,7 +52,7 @@ pub async fn request_json<T, P>(
             Ok(v)
         }
         Err(err) => {
-            log::error!("url={}, err={}", response.url().to_string(), err.to_string());
+            log::error!("err={}", err.to_string());
             Err(err)
         }
     }
