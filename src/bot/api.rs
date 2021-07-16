@@ -17,7 +17,7 @@ use crate::{
         SetChatDescription, SetChatPermissions, SetChatPhoto,
         SetChatStickerSet, SetChatTitle, SetGameScore, SetStickerPositionInSet,
         SetWebhook, StopMessageLiveLocation, StopPoll, UnbanChatMember,
-        UnpinChatMessage, UploadStickerFile,SetGuildCredit, DeleteGuildCredit,
+        UnpinChatMessage, UploadStickerFile,SetGuildCredit, DeleteGuildCredit, GetGuildCredit,
         GetPrivateChat, GetGuildRoles, GetGuildMembers, SearchGuildMember, SetMemberRoles,
         GetRoleMembers, GetRoleMembersCount, SearchGuildMemberByUsername, GetMessage, SendTaskInduction,
     },
@@ -1619,6 +1619,16 @@ impl Bot {
             C: Into<ChatId>,
     {
         DeleteGuildCredit::new(Arc::clone(self), chat_id, guild_id, user_id)
+    }
+
+    pub fn get_guild_credit(
+        self: &Arc<Bot>,
+        bot_id: Option<i64>,
+        guild_id: Option<i64>,
+        user_id: i64,
+    ) -> GetGuildCredit
+    {
+        GetGuildCredit::new(Arc::clone(self), bot_id, guild_id, user_id)
     }
 
     pub fn get_private_chat(

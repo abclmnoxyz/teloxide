@@ -76,6 +76,7 @@ mod search_guild_users;
 mod get_guild_members_count;
 mod get_message;
 mod send_task;
+mod get_guild_credit;
 
 
 pub use add_sticker_to_set::*;
@@ -157,3 +158,4 @@ pub use get_guild_members_count::*;
 pub use search_guild_users::*;
 pub use get_message::*;
 pub use send_task::*;
+pub use get_guild_credit::*;

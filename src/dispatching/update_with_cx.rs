@@ -5,7 +5,7 @@ use crate::{
         PinChatMessage, Request, ResponseResult, SendAnimation, SendAudio,
         SendContact, SendDocument, SendLocation, SendMediaGroup, SendMessage,
         SendPhoto, SendSticker, SendVenue, SendVideo, SendVideoNote, SendVoice,
-        SetGuildCredit, DeleteGuildCredit, GetPrivateChat, GetGuildRoles, GetGuildMembers,
+        SetGuildCredit, DeleteGuildCredit, GetGuildCredit, GetPrivateChat, GetGuildRoles, GetGuildMembers,
         SetMemberRoles, GetChatMember, GetRoleMembers,
     },
     types::{ChatId, ChatOrInlineMessage, InputFile, InputMedia, Message, GuildCredit},
@@ -179,6 +179,10 @@ impl UpdateWithCx<Message> {
 
     pub fn delete_guild_credit(&self, guild_id: Option<i64>, user_id: i64) -> DeleteGuildCredit {
         self.bot.delete_guild_credit(Some(self.update.chat.id), guild_id, user_id)
+    }
+
+    pub fn get_guild_credit(&self, bot_id: Option<i64>, guild_id: Option<i64>, user_id: i64) -> GetGuildCredit {
+        self.bot.get_guild_credit(bot_id, guild_id, user_id)
     }
 
     pub fn get_private_chat(&self, user_id: i64) -> GetPrivateChat {
