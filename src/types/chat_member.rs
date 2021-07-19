@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::types::{User, GuildRole};
+use crate::types::{User, GuildRole, GuildCredit};
 
 // TODO: ChatMemberKind?...
 /// This object contains information about one member of the chat.
@@ -16,6 +16,9 @@ pub struct ChatMember {
     pub status: ChatMemberStatus,
 
     pub roles: Option<Vec<GuildRole>>,
+
+    // the members credit in the chat
+    pub credits: Option<Vec<GuildCredit>>,
 
     /// Owner and administrators only. Custom title for this user
     pub custom_title: Option<String>,
@@ -103,6 +106,41 @@ impl ChatMember {
             user,
             status: ChatMemberStatus::Member,
             roles: None,
+            credits: None,
+            custom_title: None,
+            until_date: None,
+            can_be_edited: None,
+            can_change_info: None,
+            can_post_messages: None,
+            can_edit_messages: None,
+            can_delete_messages: None,
+            can_invite_users: None,
+            can_restrict_members: None,
+            can_pin_messages: None,
+            can_promote_members: None,
+            can_send_messages: None,
+            can_send_media_messages: None,
+            can_send_other_messages: None,
+            can_add_web_page_previews: None,
+            can_manage_roles: None,
+            can_manage_channels: None,
+            can_manage_guild: None,
+            can_manage_emojis: None
+        }
+    }
+
+    pub fn new_with_credits(user_id: i64, nickname: Option<String>, username: Option<String>, avatar: Option<String>, role_ids: Option<Vec<String>>, credits: Option<Vec<GuildCredit>>) -> Self {
+        let mut user = User::default();
+        user.id = user_id;
+        user.first_name = nickname.unwrap_or_default();
+        user.avatar = avatar;
+        user.username = username;
+        user.role_ids = role_ids;
+        ChatMember {
+            user,
+            status: ChatMemberStatus::Member,
+            roles: None,
+            credits: credits,
             custom_title: None,
             until_date: None,
             can_be_edited: None,
