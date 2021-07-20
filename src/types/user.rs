@@ -41,6 +41,8 @@ pub struct User {
 
     #[serde(default)]
     pub role_ids: Option<Vec<String>>,
+
+    pub pending: Option<bool>,
 }
 
 impl User {
