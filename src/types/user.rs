@@ -43,6 +43,9 @@ pub struct User {
     pub role_ids: Option<Vec<String>>,
 
     pub pending: Option<bool>,
+
+    // 邀请码
+    pub invite_code : Option<String>,
 }
 
 impl User {
