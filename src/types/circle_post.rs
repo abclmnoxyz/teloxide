@@ -10,16 +10,18 @@ pub struct CirclePost {
     pub post_id: i64,
     pub topic_id: Option<i64>,
     pub topic_name: Option<String>,
+    pub content: Option<String>,
 }
 
 impl CirclePost {
-    pub fn new(guild_id: i64, channel_id: i64, post_id: i64, topic_id: Option<i64>, topic_name: Option<String>) -> Self {
+    pub fn new(guild_id: i64, channel_id: i64, post_id: i64, topic_id: Option<i64>, topic_name: Option<String>, content: Option<String>) -> Self {
         CirclePost {
             guild_id,
             channel_id,
             post_id,
             topic_id,
-            topic_name
+            topic_name,
+            content,
         }
     }
 }

@@ -396,7 +396,7 @@ impl UpdateKind {
         })
     }
     pub fn new_circle_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64, 
-                           gender: Option<u8>, nickname: Option<String>, post_id: i64, topic_id: Option<i64>, topic_name: Option<String>) -> Self {
+                           gender: Option<u8>, nickname: Option<String>, post_id: i64, topic_id: Option<i64>, topic_name: Option<String>, content: Option<String>) -> Self {
         UpdateKind::ChannelPost(Message {
             id: message_id,
             date,
@@ -430,14 +430,14 @@ impl UpdateKind {
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: None }),
                 edit_date: None,
                 media_kind: MediaKind::CirclePost(MediaCirclePost {
-                    circle_post: CirclePost::new(guild_id, channel_id, post_id, topic_id, topic_name),
+                    circle_post: CirclePost::new(guild_id, channel_id, post_id, topic_id, topic_name, content),
                 }),
                 reply_markup: None,
             }),
         })
     }
     pub fn new_circle_comment(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, 
-                              date: i64, gender: Option<u8>, nickname: Option<String>, post_id: i64) -> Self {
+                              date: i64, gender: Option<u8>, nickname: Option<String>, post_id: i64, content: Option<String>) -> Self {
         UpdateKind::ChannelPost(Message {
             id: message_id,
             date,
@@ -471,7 +471,7 @@ impl UpdateKind {
                 forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: None }),
                 edit_date: None,
                 media_kind: MediaKind::CircleComment(MediaCircleComment {
-                    circle_comment: CircleComment::new(post_id, message_id),
+                    circle_comment: CircleComment::new(post_id, message_id, content),
                 }),
                 reply_markup: None,
             }),
