@@ -18,6 +18,7 @@ pub struct SendMessage {
     bot: Arc<Bot>,
     pub chat_id: ChatId,
     pub text: String,
+    pub desc: Option<String>,
     pub parse_mode: Option<ParseMode>,
     pub selective: Option<bool>,
     pub disable_web_page_preview: Option<bool>,
@@ -52,6 +53,7 @@ impl SendMessage {
             bot,
             chat_id: chat_id.into(),
             text: text.into(),
+            desc: None,
             parse_mode: None,
             selective: None,
             disable_web_page_preview: None,
@@ -78,6 +80,15 @@ impl SendMessage {
             T: Into<String>,
     {
         self.text = value.into();
+        self
+    }
+
+    /// desc of the text will show in chat list
+    pub fn desc<T>(mut self, value: T) -> Self
+        where
+            T: Into<String>,
+    {
+        self.desc = Some(value.into());
         self
     }
 
