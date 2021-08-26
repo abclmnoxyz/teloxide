@@ -26,6 +26,8 @@ pub struct SendMessage {
     pub reply_to_message_id: Option<i64>,
     pub reply_markup: Option<ReplyMarkup>,
     pub unreactive: Option<i32>,
+    pub ephemeral: Option<bool>,
+    pub users: Option<Vec<String>>,
 }
 
 #[async_trait::async_trait]
@@ -61,6 +63,8 @@ impl SendMessage {
             reply_to_message_id: None,
             reply_markup: None,
             unreactive: None,
+            users: None,
+            ephemeral: None,
         }
     }
 
@@ -150,6 +154,16 @@ impl SendMessage {
 
     pub fn unreactive(mut self, val: Option<i32>) -> Self {
         self.unreactive = val;
+        self
+    }
+
+    pub fn ephemeral(mut self, val: Option<bool>) -> Self {
+        self.ephemeral = val;
+        self
+    }
+
+    pub fn users(mut self, users: Option<Vec<String>>) -> Self {
+        self.users = users;
         self
     }
 }
