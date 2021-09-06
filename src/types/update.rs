@@ -1174,6 +1174,459 @@ impl UpdateKind {
             }),
         })
     }
+
+    pub fn new_group_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str,
+                            is_bot: bool, text: &str, entities: Vec<MessageEntity>, date: i64,
+                            quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Common(MessageCommon {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
+                edit_date: None,
+                media_kind: MediaKind::Text(MediaText { text: text.to_string(), entities }),
+                reply_markup: None,
+            }),
+        })
+    }
+
+    pub fn new_image_group_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str,
+                                  is_bot: bool, date: i64, image_url: &str, width: i32, height: i32,
+                                  quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
+        let photo = PhotoSize {
+            file_id: image_url.to_string(),
+            file_unique_id: image_url.to_string(),
+            width,
+            height,
+            file_size: None,
+        };
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Common(MessageCommon {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
+                edit_date: None,
+                media_kind: MediaKind::Photo(MediaPhoto {
+                    photo: vec![photo],
+                    caption: None,
+                    caption_entities: vec![],
+                    media_group_id: None,
+                }),
+                reply_markup: None,
+            }),
+        })
+    }
+
+
+    pub fn new_rich_text_group_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64,
+                                      quote: Option<i64>, gender: Option<u8>, nickname: Option<String>, title: &str) -> Self {
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
+
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Common(MessageCommon {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
+                edit_date: None,
+                media_kind: MediaKind::RichText(MediaRichText {
+                    rich_text: RichText::new(title)
+                }),
+                reply_markup: None,
+            }),
+        })
+    }
+
+    pub fn new_video_group_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool,
+                                  date: i64, url: &str, width: i32, height: i32, duration: u32,
+                                  thumb_url: &str, thumb_width: i32, thumb_height: i32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
+        let photo = PhotoSize {
+            file_id: thumb_url.to_string(),
+            file_unique_id: thumb_url.to_string(),
+            width: thumb_width,
+            height: thumb_height,
+            file_size: None,
+        };
+        let video = VideoNote {
+            file_id: url.to_string(),
+            file_unique_id: url.to_string(),
+            length: 0,
+            duration,
+            thumb: Some(photo),
+            file_size: None,
+        };
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Common(MessageCommon {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
+                edit_date: None,
+                media_kind: MediaKind::VideoNote(MediaVideoNote {
+                    video_note: video
+                }),
+                reply_markup: None,
+            }),
+        })
+    }
+    pub fn new_voice_group_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, username: &str, is_bot: bool, date: i64,
+                                  url: &str, duration: u32, quote: Option<i64>, gender: Option<u8>, nickname: Option<String>) -> Self {
+        let reply_to = if let Some(quote_l1) = quote { Some(Box::new(Message::new_public_without_kind(quote_l1, channel_id, guild_id, date))) } else {None};
+        let voice = Voice {
+            file_id: url.to_string(),
+            file_unique_id: url.to_string(),
+            duration,
+            mime_type: None,
+            file_size: None,
+        };
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Common(MessageCommon {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                forward_kind: ForwardKind::Origin(ForwardOrigin { reply_to_message: reply_to }),
+                edit_date: None,
+                media_kind: MediaKind::Voice(MediaVoice {
+                    voice,
+                    caption: None,
+                    caption_entities: vec![],
+                }),
+                reply_markup: None,
+            }),
+        })
+    }
+
+    pub fn new_pinned_group_post(message_id: i64, guild_id: i64, channel_id: i64, date: i64, pinned_id: i64) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Pinned(MessagePinned {
+                pinned: Box::new(Message::new_public_without_kind(pinned_id, channel_id, guild_id, date)),
+            }),
+        })
+    }
+    pub fn new_reaction_group_post(message_id: i64, user_id: i64, guild_id: i64, channel_id: i64, date: i64, username: &str, is_bot: bool,
+                                     gender: Option<u8>, nickname: Option<String>, reaction_message: i64, action: &str, emoji: &str) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::Reaction(Reaction {
+                from: Some(User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }),
+                reaction: MessageReaction {
+                    reaction_to_message: Box::new(Message::new_public_without_kind(reaction_message, channel_id, guild_id, date)),
+                    action: action.to_string(),
+                    emoji: emoji.to_string(),
+                },
+            }),
+        })
+    }
+    pub fn new_chat_members_group_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str, is_bot: bool,
+                            date: i64, gender: Option<u8>, nickname: Option<String>, pending: Option<bool>, invite_code : Option<String>) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::NewChatMembers(MessageNewChatMembers {
+                new_chat_members: vec![User {
+                    id: user_id,
+                    is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending,
+                    invite_code,
+                }],
+            }),
+        })
+    }
+    pub fn left_chat_member_group_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str,
+                            is_bot: bool, date: i64, gender: Option<u8>, nickname: Option<String>) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::LeftChatMember(MessageLeftChatMember {
+                left_chat_member: User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                },
+            }),
+        })
+    }
+    pub fn chat_members_online_group_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str, is_bot: bool,
+                               date: i64, gender: Option<u8>, nickname: Option<String>) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::ChatMembersOnline(MessageChatMembersOnline {
+                chat_members_online: vec![User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }],
+            }),
+        })
+    }
+    pub fn chat_members_offline_group_post(message_id: i64, guild_id: i64, channel_id: i64, user_id: i64, username: &str, is_bot: bool,
+                                date: i64, gender: Option<u8>, nickname: Option<String>) -> Self {
+        UpdateKind::ChannelPost(Message {
+            id: message_id,
+            date,
+            chat: Chat {
+                id: channel_id,
+                guild_id,
+                kind: ChatKind::Public(ChatPublic {
+                    title: None,
+                    kind: PublicChatKind::Group(PublicChatGroup { permissions: None }),
+                    description: None,
+                    invite_link: None,
+                    pinned_message: None,
+                }),
+                photo: None,
+            },
+            kind: MessageKind::ChatMembersOffline(MessageChatMembersOffline {
+                chat_members_offline: vec![User {
+                    id: user_id,
+                    is_bot: is_bot,
+                    first_name: nickname.unwrap_or_default(),
+                    last_name: None,
+                    username: Some(username.to_string()),
+                    language_code: None,
+                    user_token: None,
+                    gender,
+                    avatar: None,
+                    role_ids: None,
+                    pending: None,
+                    invite_code: None,
+                }],
+            }),
+        })
+    }
 }
 
 #[cfg(test)]
