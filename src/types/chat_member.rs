@@ -95,9 +95,10 @@ pub struct ChatMember {
 }
 
 impl ChatMember {
-    pub fn new(user_id: i64, nickname: Option<String>, username: Option<String>, avatar: Option<String>, role_ids: Option<Vec<String>>, pending: Option<bool>) -> Self {
+    pub fn new(user_id: i64, is_bot: bool, nickname: Option<String>, username: Option<String>, avatar: Option<String>, role_ids: Option<Vec<String>>, pending: Option<bool>) -> Self {
         let mut user = User::default();
         user.id = user_id;
+        user.is_bot = is_bot;
         user.first_name = nickname.unwrap_or_default();
         user.avatar = avatar;
         user.username = username;
@@ -216,10 +217,14 @@ mod tests {
                 gender: None,
                 avatar: None,
                 language_code: None,
-                user_token: None
+                user_token: None,
+                role_ids: None,
+                pending: None,
+                invite_code: None
             },
             status: ChatMemberStatus::Creator,
             roles: None,
+            credits: None,
             custom_title: None,
             until_date: Some(123_456),
             can_be_edited: Some(true),
