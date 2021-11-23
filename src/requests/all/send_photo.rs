@@ -20,6 +20,7 @@ pub struct SendPhoto {
     pub disable_notification: Option<bool>,
     pub reply_to_message_id: Option<i64>,
     pub reply_markup: Option<ReplyMarkup>,
+    pub mentions: Option<Vec<String>>
 }
 
 #[async_trait::async_trait]
@@ -46,6 +47,8 @@ impl Request for SendPhoto {
                 .await
                 .add("reply_markup", &self.reply_markup)
                 .await
+                .add("mentions", &self.mentions)
+                .await
                 .build(),
         )
             .await
@@ -66,6 +69,7 @@ impl SendPhoto {
             disable_notification: None,
             reply_to_message_id: None,
             reply_markup: None,
+            mentions: None,
         }
     }
 
@@ -143,4 +147,10 @@ impl SendPhoto {
         self.reply_markup = Some(val);
         self
     }
+
+    pub fn mentions(mut self, mentions: Vec<String>) -> Self {
+        self.mentions = Some(mentions);
+        self
+    }
+
 }

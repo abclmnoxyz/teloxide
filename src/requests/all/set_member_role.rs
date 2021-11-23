@@ -3,7 +3,7 @@ use serde::Serialize;
 use crate::{
     net,
     requests::{Request, ResponseResult},
-    types::{GuildRole, ChatId, True},
+    types::{True},
     Bot,
 };
 use std::sync::Arc;

@@ -1,9 +1,9 @@
 use serde::{Serialize, Deserialize};
 
 use crate::{
-    net,
-    requests::{Request, ResponseResult},
-    types::{ChatId, Message, ParseMode, ReplyMarkup},
+    // net,
+    // requests::{Request, ResponseResult},
+    types::{ChatId, ParseMode, ReplyMarkup},
     Bot,
 };
 use std::sync::Arc;

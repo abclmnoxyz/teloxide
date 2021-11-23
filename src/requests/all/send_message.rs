@@ -29,6 +29,10 @@ pub struct SendMessage {
     pub unreactive: Option<i32>,
     pub ephemeral: Option<bool>,
     pub users: Option<Vec<String>>,
+
+    // use i64 as uid? user_id before is using String, so still use it.
+    // '@'uid list
+    pub mentions: Option<Vec<String>>,
 }
 
 #[async_trait::async_trait]
@@ -67,6 +71,7 @@ impl SendMessage {
             unreactive: None,
             users: None,
             ephemeral: None,
+            mentions: None,
         }
     }
 

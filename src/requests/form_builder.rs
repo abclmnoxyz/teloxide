@@ -128,6 +128,14 @@ impl IntoFormValue for Vec<InputMedia> {
     }
 }
 
+impl IntoFormValue for Vec<String> {
+    fn into_form_value(&self) -> Option<FormValue> {
+        let json =
+            serde_json::to_string(self).expect("serde_json::to_string failed");
+        Some(FormValue::Str(json))
+    }
+}
+
 impl IntoFormValue for InputMedia {
     fn into_form_value(&self) -> Option<FormValue> {
         let json =

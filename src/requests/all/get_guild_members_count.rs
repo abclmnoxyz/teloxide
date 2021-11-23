@@ -3,7 +3,7 @@ use serde::Serialize;
 use crate::{
     net,
     requests::{Request, ResponseResult},
-    types::{GuildRole, ChatId, ChatMember},
+    // types::{GuildRole, ChatId, ChatMember},
     Bot,
 };
 use std::sync::Arc;
@@ -32,6 +32,7 @@ impl Request for GetGuildMembersCount {
 }
 
 impl GetGuildMembersCount {
+    #[allow(dead_code)]
     pub(crate) fn new(bot: Arc<Bot>, guild_id: i64) -> Self {
         Self { bot, guild_id}
     }
